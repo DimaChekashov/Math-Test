@@ -1,4 +1,4 @@
-package com.foxsay.mathtest;
+package com.foxsay.mathtest.com.foxsay.celindr;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+
+import com.foxsay.mathtest.R;
+import com.foxsay.mathtest.Task0Answer;
+import com.foxsay.mathtest.Task0_DontAnswer;
 
 public class Task1 extends AppCompatActivity {
     CheckBox BOX1, BOX2, BOX3, BOX4;
