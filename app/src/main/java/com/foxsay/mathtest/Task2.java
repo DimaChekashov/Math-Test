@@ -1,11 +1,11 @@
-package com.foxsay.mathtest.com.foxsay.celindr;
+package com.foxsay.mathtest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.foxsay.mathtest.R;
 
-public class Task2 extends AppCompatActivity {
+public class Task2 extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

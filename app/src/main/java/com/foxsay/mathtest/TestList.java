@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.foxsay.mathtest.com.foxsay.celindr.Task1;
-
 public class TestList extends AppCompatActivity {
 
     ImageButton celindrBut;

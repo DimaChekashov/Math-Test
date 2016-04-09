@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".com.foxsay.celindr.Task1"
+            android:name=".Task1"
             android:label="TASK 1"
             android:parentActivityName=".Main" >
             <meta-data
@@ -47,7 +47,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main" />
         </activity>
-        <activity android:name=".com.foxsay.celindr.Task2" >
+        <activity android:name=".Task2" >
         </activity>
     </application>
 
