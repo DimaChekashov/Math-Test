@@ -24,7 +24,7 @@
     <string name="celindr">celindr</string>
 
     <array name="main_menu_array">
-        <item>Geometry</item>
-        <item>Algebra</item>
+        <item>Геометрия</item>
+        <item>Алгебра</item>
     </array>
 </resources>

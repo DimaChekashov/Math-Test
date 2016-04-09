@@ -16,15 +16,15 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
 
-        testBut = (ImageButton) findViewById(R.id.testBut);
-        testBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(Main.this, TestList.class);
-                startActivity(intent2);
-            }
-        });
-        }
+//        testBut = (ImageButton) findViewById(R.id.testBut);
+//        testBut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent2 = new Intent(Main.this, TestList.class);
+//                startActivity(intent2);
+//            }
+//        });
+    }
 
 
 }
