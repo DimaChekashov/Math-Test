@@ -8,23 +8,27 @@
     <string name="w">2</string>
     <string name="e">1</string>
     <string name="r">5</string>
-    <string name="Answer">Answer</string>
+    <string name="answer">Answer</string>
     <string name="dontanswer1">task1(don\'t answer)</string>
     <string name="Molodes">Вы Молодец!</string>
     <string name="answer1">Answer1</string>
-    <string name="dm3">Ответ : 3 дм</string>
     <string name="f">3</string>
     <string name="n">4</string>
     <string name="п">Вы ошиблись!</string>
     <string name="р">Посмотреть Ответ</string>
-    <string name="dm6">Ответ : 6 дм</string>
-    <string name="dm10">Ответ : 10 дм</string>
-    <string name="dm4">Ответ : 4 дм</string>
+    <string name="dm3">3 дм</string>
+    <string name="dm6">6 дм</string>
+    <string name="dm10">10 дм</string>
+    <string name="dm4">4 дм</string>
     <string name="TestBut">TestButton</string>
     <string name="celindr">celindr</string>
 
     <array name="main_menu_array">
         <item>Geometry</item>
         <item>Algebra</item>
+    </array>
+    <array name="geometry_menu_array">
+        <item>Cylinder</item>
+        <item>Sphere</item>
     </array>
 </resources>
