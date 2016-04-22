@@ -28,4 +28,23 @@ public class MyContract {
         String ONE_ANSWER = "one_answer";
     }
 
+    public interface TaskAnswerColumns {
+        String TASK_ID = "task_id";
+        String ANSWER = "answer";
+    }
+    public interface PossibleTaskAnswersColumns {
+        String TASK_ID = "task_id";
+        String ANSWER = "answer";
+    }
+    public interface TestColumns {
+        String _ID = BaseColumns._ID;
+        String DATE = "date";
+        String TIME = "time";
+        String GRADE = "grade";
+    }
+    public interface TestTaskAnswersColumns {
+        String TEST_ID = "test_id";
+        String TASK_ID = "task_id";
+        String ANSWER = "answer";
+    }
 }

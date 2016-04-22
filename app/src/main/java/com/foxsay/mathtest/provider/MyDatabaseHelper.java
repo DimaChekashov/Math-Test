@@ -31,6 +31,25 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + TaskColumns.QUESTION_IMG + " TEXT NOT NULL,"
                 + TaskColumns.QUESTION_VIEW_TYPE + " TEXT NOT NULL,"
                 + TaskColumns.ONE_ANSWER + " INTEGER NOT NULL)");
+
+        db.execSQL("CREATE TABLE " + Tables.TASK_ANSWERS + " ("
+                + TaskAnswerColumns.TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TaskAnswerColumns.ANSWER + " INTEGER NOT NULL)");
+
+        db.execSQL("CREATE TABLE " + Tables.POSSIBLE_TASK_ANSWERS + " ("
+                + PossibleTaskAnswersColumns.TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + PossibleTaskAnswersColumns.ANSWER + " INTEGER NOT NULL)");
+
+        db.execSQL("CREATE TABLE " + Tables.TESTS + " ("
+                + TestColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TestColumns.DATE + " TEXT NOT NULL,"
+                + TestColumns.TIME + " INTEGER NOT NULL,"
+                + TestColumns.GRADE + " TEXT NOT NULL,");
+
+        db.execSQL("CREATE TABLE " + Tables.TEST_TASK_ANSWERS + " ("
+                + TestTaskAnswersColumns.TEST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TestTaskAnswersColumns.TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TestTaskAnswersColumns.ANSWER + " INTEGER NOT NULL)");
     }
 
     @Override
