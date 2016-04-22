@@ -7,64 +7,108 @@ import android.util.Log;
 import java.util.List;
 
 /**
+ * table in DB: tasks
+ *
  * @author roman
  * @since 10.04.2016
  */
 public class Task implements Parcelable {
 
-    private String img;
-    private String task;
-    private String answer;
-    private List<String> answers;
+    private Integer id;
+    private String section; // Math, Physics
+    private String subSection; // Geometry, Algebra
+    private String group; // Cylinder, Sphere
+    private String question;
+    private String questionImg;
+    private QuestionViewType questionViewType;
 
     /**
      * 1 - true, is One answer
      * 0 - false, several answers
      */
-    private Integer isOneAnswer = 1;
+    private Integer oneAnswer = 1;
 
-    public String getImg() {
-        return img;
+    private List<String> taskAnswers;
+    private List<String> possibleTaskAnswers;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getTask() {
-        return task;
+    public String getSection() {
+        return section;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setSection(String section) {
+        this.section = section;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getSubSection() {
+        return subSection;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setSubSection(String subSection) {
+        this.subSection = subSection;
     }
 
-    public List<String> getAnswers() {
-        return answers;
+    public String getGroup() {
+        return group;
     }
 
-    public void setAnswers(List<String> answers) {
-        this.answers = answers;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
-    public Integer getIsOneAnswer() {
-        return isOneAnswer;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setIsOneAnswer(Integer isOneAnswer) {
-        this.isOneAnswer = isOneAnswer;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public boolean isOneAnswer(){
-        return 0 != isOneAnswer;
+    public String getQuestionImg() {
+        return questionImg;
+    }
+
+    public void setQuestionImg(String questionImg) {
+        this.questionImg = questionImg;
+    }
+
+    public QuestionViewType getQuestionViewType() {
+        return questionViewType;
+    }
+
+    public void setQuestionViewType(QuestionViewType questionViewType) {
+        this.questionViewType = questionViewType;
+    }
+
+    public Integer getOneAnswer() {
+        return oneAnswer;
+    }
+
+    public void setOneAnswer(Integer oneAnswer) {
+        this.oneAnswer = oneAnswer;
+    }
+
+    public List<String> getTaskAnswers() {
+        return taskAnswers;
+    }
+
+    public void setTaskAnswers(List<String> taskAnswers) {
+        this.taskAnswers = taskAnswers;
+    }
+
+    public List<String> getPossibleTaskAnswers() {
+        return possibleTaskAnswers;
+    }
+
+    public void setPossibleTaskAnswers(List<String> possibleTaskAnswers) {
+        this.possibleTaskAnswers = possibleTaskAnswers;
     }
 
     @Override
@@ -75,24 +119,21 @@ public class Task implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         Log.v("", "writeToParcel..." + flags);
-        dest.writeString(img);
-        dest.writeString(task);
-        dest.writeString(answer);
-        dest.writeList(answers);
-        dest.writeInt(isOneAnswer);
+        dest.writeString(questionImg);
+        dest.writeString(question);
+        dest.writeList(taskAnswers);
+        dest.writeInt(oneAnswer);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public Task createFromParcel(Parcel in) {
             final Task task = new Task();
-            task.setImg(in.readString());
-            task.setTask(in.readString());
-            task.setAnswer(in.readString());
+            task.setQuestionImg(in.readString());
 
             List<String> answerList = null;
             in.readList(answerList, List.class.getClassLoader());
-            task.setAnswers(answerList);
-            task.setIsOneAnswer(1);
+            task.setTaskAnswers(answerList);
+            task.setOneAnswer(1);
             return task;
         }
 

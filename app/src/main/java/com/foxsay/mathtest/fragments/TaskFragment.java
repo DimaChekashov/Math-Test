@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import com.foxsay.mathtest.R;
@@ -33,7 +32,7 @@ public class TaskFragment extends Fragment {
             task = savedInstanceState.getParcelable(ARG_TASK);
         }
         ImageView imageView = (ImageView) view.findViewById(R.id.ivTask);
-        imageView.setImageResource(getActivity().getResources().getIdentifier(task.getImg(), "drawable", getActivity().getPackageName()));
+        imageView.setImageResource(getActivity().getResources().getIdentifier(task.getQuestionImg(), "drawable", getActivity().getPackageName()));
 
         buttonAnswer = (Button) view.findViewById(R.id.answer);
         buttonAnswer.setOnClickListener(new View.OnClickListener() {

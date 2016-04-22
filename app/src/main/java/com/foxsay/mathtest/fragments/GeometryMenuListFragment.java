@@ -1,7 +1,6 @@
 package com.foxsay.mathtest.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -34,13 +33,18 @@ public class GeometryMenuListFragment extends ListFragment {
 
         Task task = new Task();
         List<String> answers = new ArrayList<>();
-        answers.add("3 дм");
         answers.add("6 дм");
-        answers.add("10 дм");
-        answers.add("4 дм");
-        task.setAnswers(answers);
-        task.setAnswer("3 дм");
-        task.setImg("task1");
+
+        List<String> possibleAnswers = new ArrayList<>();
+        possibleAnswers.add("3 дм");
+        possibleAnswers.add("6 дм");
+        possibleAnswers.add("10 дм");
+        possibleAnswers.add("4 дм");
+
+        task.setQuestionImg("task1");
+        task.setQuestion("task question?");
+        task.setTaskAnswers(answers);
+        task.setPossibleTaskAnswers(possibleAnswers);
 
         taskPicker.select(task);
     }
