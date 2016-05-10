@@ -13,10 +13,10 @@ import com.foxsay.mathtest.model.Task;
 public class DataSource {
     private static DataSource instance = null;
 
-    private static MyDatabaseHelper dbHelper;
+    private static MathTestDatabaseHelper dbHelper;
 
     private DataSource(Context context){
-        dbHelper = new MyDatabaseHelper(context);
+        dbHelper = new MathTestDatabaseHelper(context);
     }
 
     public static void close() {

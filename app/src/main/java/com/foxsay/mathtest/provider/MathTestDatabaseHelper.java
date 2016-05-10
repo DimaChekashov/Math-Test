@@ -1,21 +1,22 @@
 package com.foxsay.mathtest.provider;
 
-import static com.foxsay.mathtest.provider.MyContract.*;
+import static com.foxsay.mathtest.provider.MathTestContract.*;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 
 /**
  * @author roman
  * @since 17.04.2016
  */
-public class MyDatabaseHelper extends SQLiteOpenHelper {
+public class MathTestDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "mathtest.db";
     private static final int DATABASE_VERSION = 1;
 
-    public MyDatabaseHelper(Context context) {
+    public MathTestDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -23,7 +24,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //TODO: реализовать создание таблиц
         db.execSQL("CREATE TABLE " + Tables.TASKS + " ("
-                + TaskColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TaskColumns.SECTION + " TEXT NOT NULL,"
                 + TaskColumns.SUB_SECTION + " TEXT NOT NULL,"
                 + TaskColumns.GROUP + " TEXT NOT NULL,"
@@ -33,22 +34,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + TaskColumns.ONE_ANSWER + " INTEGER NOT NULL)");
 
         db.execSQL("CREATE TABLE " + Tables.TASK_ANSWERS + " ("
-                + TaskAnswerColumns.TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TaskAnswerColumns.TASK_ID + " INTEGER NOT NULL,"
                 + TaskAnswerColumns.ANSWER + " INTEGER NOT NULL)");
 
         db.execSQL("CREATE TABLE " + Tables.POSSIBLE_TASK_ANSWERS + " ("
-                + PossibleTaskAnswersColumns.TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + PossibleTaskAnswersColumns.TASK_ID + " INTEGER NOT NULL,"
                 + PossibleTaskAnswersColumns.ANSWER + " INTEGER NOT NULL)");
 
         db.execSQL("CREATE TABLE " + Tables.TESTS + " ("
-                + TestColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TestColumns.DATE + " TEXT NOT NULL,"
                 + TestColumns.TIME + " INTEGER NOT NULL,"
                 + TestColumns.GRADE + " TEXT NOT NULL,");
 
         db.execSQL("CREATE TABLE " + Tables.TEST_TASK_ANSWERS + " ("
-                + TestTaskAnswersColumns.TEST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + TestTaskAnswersColumns.TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TestTaskAnswersColumns.TEST_ID + " INTEGER NOT NULL,"
+                + TestTaskAnswersColumns.TASK_ID + " INTEGER NOT NULL,"
                 + TestTaskAnswersColumns.ANSWER + " INTEGER NOT NULL)");
     }
 
