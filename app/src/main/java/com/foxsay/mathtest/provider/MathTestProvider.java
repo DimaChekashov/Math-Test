@@ -25,12 +25,6 @@ public class MathTestProvider extends ContentProvider {
 
     private MathTestDatabaseHelper mDBOpenHelper;
 
-    static final String PROVIDER_NAME = "com.foxsay.mathtest";
-
-    static final String URL = "content://" + PROVIDER_NAME + "/cpcontacts";
-
-    static final Uri CONTENT_URL = Uri.parse(URL);
-
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
     private static final int TASKS = 100;
@@ -63,7 +57,6 @@ public class MathTestProvider extends ContentProvider {
 
         final SQLiteDatabase db = mDBOpenHelper.getReadableDatabase();
 
-        String tagsFilter = uri.getQueryParameter(Sessions.QUERY_PARAMETER_TAG_FILTER);
         final int match = sUriMatcher.match(uri);
 
         // avoid the expensive string concatenation below if not loggable
@@ -71,7 +64,6 @@ public class MathTestProvider extends ContentProvider {
             LOGV(TAG, "uri=" + uri + " match=" + match + " proj=" + Arrays.toString(projection) +
                     " selection=" + selection + " args=" + Arrays.toString(selectionArgs) + ")");
         }
-
 
         switch (match) {
             default: {
@@ -94,25 +86,6 @@ public class MathTestProvider extends ContentProvider {
                     cursor.setNotificationUri(context.getContentResolver(), uri);
                 }
                 return cursor;
-            }
-            case SEARCH_SUGGEST: {
-                final SelectionBuilder builder = new SelectionBuilder();
-
-                // Adjust incoming query to become SQL text match
-                selectionArgs[0] = selectionArgs[0] + "%";
-                builder.table(Tables.SEARCH_SUGGEST);
-                builder.where(selection, selectionArgs);
-                builder.map(SearchManager.SUGGEST_COLUMN_QUERY,
-                        SearchManager.SUGGEST_COLUMN_TEXT_1);
-
-                projection = new String[] {
-                        BaseColumns._ID,
-                        SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        SearchManager.SUGGEST_COLUMN_QUERY
-                };
-
-                final String limit = uri.getQueryParameter(SearchManager.SUGGEST_PARAMETER_LIMIT);
-                return builder.query(db, false, projection, SearchSuggest.DEFAULT_SORT, limit);
             }
         }
     }
@@ -194,4 +167,30 @@ public class MathTestProvider extends ContentProvider {
         }
     }
 
+    /**
+     * Build an advanced {@link SelectionBuilder} to match the requested
+     * {@link Uri}. This is usually only used by {@link #query}, since it
+     * performs table joins useful for {@link Cursor} data.
+     */
+    private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
+        final SelectionBuilder builder = new SelectionBuilder();
+        switch (match) {
+            case BLOCKS: {
+                return builder.table(Tables.BLOCKS);
+            }
+            case BLOCKS_BETWEEN: {
+                final List<String> segments = uri.getPathSegments();
+                final String startTime = segments.get(2);
+                final String endTime = segments.get(3);
+                return builder.table(Tables.BLOCKS)
+                        .where(Blocks.BLOCK_START + ">=?", startTime)
+                        .where(Blocks.BLOCK_START + "<=?", endTime);
+            }
+            case BLOCKS_ID: {
+                final String blockId = Blocks.getBlockId(uri);
+                return builder.table(Tables.BLOCKS)
+                        .where(Blocks.BLOCK_ID + "=?", blockId);
+            }
+        }
+    }
 }
