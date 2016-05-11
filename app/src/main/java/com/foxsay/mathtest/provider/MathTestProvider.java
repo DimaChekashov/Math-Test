@@ -70,17 +70,9 @@ public class MathTestProvider extends ContentProvider {
                 // Most cases are handled with simple SelectionBuilder
                 final SelectionBuilder builder = buildExpandedSelection(uri, match);
 
-                // If a special filter was specified, try to apply it
-                if (!TextUtils.isEmpty(tagsFilter)) {
-                    addTagsFilter(builder, tagsFilter);
-                }
-
-                boolean distinct = !TextUtils.isEmpty(
-                        uri.getQueryParameter(ScheduleContract.QUERY_PARAMETER_DISTINCT));
-
                 Cursor cursor = builder
                         .where(selection, selectionArgs)
-                        .query(db, distinct, projection, sortOrder, null);
+                        .query(db, true, projection, sortOrder, null);
                 Context context = getContext();
                 if (null != context) {
                     cursor.setNotificationUri(context.getContentResolver(), uri);
@@ -175,21 +167,14 @@ public class MathTestProvider extends ContentProvider {
     private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
         final SelectionBuilder builder = new SelectionBuilder();
         switch (match) {
-            case BLOCKS: {
-                return builder.table(Tables.BLOCKS);
+            case TASKS: {
+                return builder.table(Tables.TASKS);
             }
-            case BLOCKS_BETWEEN: {
-                final List<String> segments = uri.getPathSegments();
-                final String startTime = segments.get(2);
-                final String endTime = segments.get(3);
-                return builder.table(Tables.BLOCKS)
-                        .where(Blocks.BLOCK_START + ">=?", startTime)
-                        .where(Blocks.BLOCK_START + "<=?", endTime);
+            case TASKS_ID: {
+                return builder.table(Tables.TASKS).where(Tasks._ID + "=?", Tasks.getId(uri));
             }
-            case BLOCKS_ID: {
-                final String blockId = Blocks.getBlockId(uri);
-                return builder.table(Tables.BLOCKS)
-                        .where(Blocks.BLOCK_ID + "=?", blockId);
+            default: {
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
             }
         }
     }

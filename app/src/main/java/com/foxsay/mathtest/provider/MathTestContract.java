@@ -52,6 +52,8 @@ public class MathTestContract {
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
+    private static final String PATH_TASKS = "tasks";
+
     public static class Tasks implements TaskColumns, BaseColumns {
         public static final String BLOCK_TYPE_FREE = "free";
         public static final String BLOCK_TYPE_BREAK = "break";
@@ -63,7 +65,7 @@ public class MathTestContract {
         }
 
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_BLOCKS).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TASKS).build();
 
         public static final String CONTENT_TYPE =
                 "vnd.android.cursor.dir/vnd.iosched2014.block";
