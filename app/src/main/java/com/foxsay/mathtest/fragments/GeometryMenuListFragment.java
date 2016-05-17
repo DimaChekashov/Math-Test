@@ -43,8 +43,8 @@ public class GeometryMenuListFragment extends ListFragment {
 
         task.setQuestionImg("task1");
         task.setQuestion("task question?");
-        task.setTaskAnswers(answers);
-        task.setPossibleTaskAnswers(possibleAnswers);
+//        task.setAnswers(answers);
+//        task.setPossibleTaskAnswers(possibleAnswers);
 
         taskPicker.select(task);
     }

@@ -49,6 +49,11 @@
         </activity>
         <activity android:name=".Task2" >
         </activity>
+
+        <provider
+            android:name=".provider.MathTestProvider"
+            android:authorities="com.foxsay.mathtest"
+            android:exported="false" />
     </application>
 
 </manifest>

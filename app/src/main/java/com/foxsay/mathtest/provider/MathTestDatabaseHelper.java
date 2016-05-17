@@ -25,27 +25,28 @@ public class MathTestDatabaseHelper extends SQLiteOpenHelper {
         //TODO: реализовать создание таблиц
         db.execSQL("CREATE TABLE " + Tables.TASKS + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TaskColumns.TASK_ID + " INTEGER NOT NULL,"
                 + TaskColumns.SECTION + " TEXT NOT NULL,"
                 + TaskColumns.SUB_SECTION + " TEXT NOT NULL,"
                 + TaskColumns.GROUP + " TEXT NOT NULL,"
                 + TaskColumns.QUESTION + " TEXT NOT NULL,"
                 + TaskColumns.QUESTION_IMG + " TEXT NOT NULL,"
                 + TaskColumns.QUESTION_VIEW_TYPE + " TEXT NOT NULL,"
-                + TaskColumns.ONE_ANSWER + " INTEGER NOT NULL)");
+                + TaskColumns.ONE_ANSWER + " INTEGER NOT NULL,"
+                + "UNIQUE (" + TaskColumns.TASK_ID + ") ON CONFLICT REPLACE)");
 
-        db.execSQL("CREATE TABLE " + Tables.TASK_ANSWERS + " ("
-                + TaskAnswerColumns.TASK_ID + " INTEGER NOT NULL,"
-                + TaskAnswerColumns.ANSWER + " INTEGER NOT NULL)");
-
-        db.execSQL("CREATE TABLE " + Tables.POSSIBLE_TASK_ANSWERS + " ("
-                + PossibleTaskAnswersColumns.TASK_ID + " INTEGER NOT NULL,"
-                + PossibleTaskAnswersColumns.ANSWER + " INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE " + Tables.ANSWERS + " ("
+                + AnswerColumns.TASK_ID + " INTEGER NOT NULL,"
+                + AnswerColumns.ANSWER + " TEXT NOT NULL,"
+                + AnswerColumns.CORRECT + " INTEGER NOT NULL)");
 
         db.execSQL("CREATE TABLE " + Tables.TESTS + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TestColumns.TEST_ID + " INTEGER NOT NULL,"
                 + TestColumns.DATE + " TEXT NOT NULL,"
                 + TestColumns.TIME + " INTEGER NOT NULL,"
-                + TestColumns.GRADE + " TEXT NOT NULL,");
+                + TestColumns.GRADE + " TEXT NOT NULL,"
+                + "UNIQUE (" + TestColumns.TEST_ID + ") ON CONFLICT REPLACE)");
 
         db.execSQL("CREATE TABLE " + Tables.TEST_TASK_ANSWERS + " ("
                 + TestTaskAnswersColumns.TEST_ID + " INTEGER NOT NULL,"

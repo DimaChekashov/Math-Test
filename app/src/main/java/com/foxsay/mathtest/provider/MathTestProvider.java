@@ -85,14 +85,13 @@ public class MathTestProvider extends ContentProvider {
     @Override
     public String getType(Uri uri) {
 
-        switch (uriMatcher.match(uri)){
-
-            case uriCode:
-                return "vnd.android.cursor.dir/cpcontacts";
-
+        switch (sUriMatcher.match(uri)){
+            case TASKS:
+                return Tasks.CONTENT_TYPE;
+            case TASKS_ID:
+                return Tasks.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("Unsupported URI " + uri);
-
         }
     }
 

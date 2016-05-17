@@ -15,6 +15,7 @@ import java.util.List;
 public class Task implements Parcelable {
 
     private Integer id;
+    private Integer taskId;
     private String section; // Math, Physics
     private String subSection; // Geometry, Algebra
     private String group; // Cylinder, Sphere
@@ -28,8 +29,7 @@ public class Task implements Parcelable {
      */
     private Integer oneAnswer = 1;
 
-    private List<String> taskAnswers;
-    private List<String> possibleTaskAnswers;
+    private List<Answer> answers;
 
     public Integer getId() {
         return id;
@@ -37,6 +37,14 @@ public class Task implements Parcelable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
     }
 
     public String getSection() {
@@ -95,20 +103,12 @@ public class Task implements Parcelable {
         this.oneAnswer = oneAnswer;
     }
 
-    public List<String> getTaskAnswers() {
-        return taskAnswers;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    public void setTaskAnswers(List<String> taskAnswers) {
-        this.taskAnswers = taskAnswers;
-    }
-
-    public List<String> getPossibleTaskAnswers() {
-        return possibleTaskAnswers;
-    }
-
-    public void setPossibleTaskAnswers(List<String> possibleTaskAnswers) {
-        this.possibleTaskAnswers = possibleTaskAnswers;
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class Task implements Parcelable {
         Log.v("", "writeToParcel..." + flags);
         dest.writeString(questionImg);
         dest.writeString(question);
-        dest.writeList(taskAnswers);
+        dest.writeList(answers);
         dest.writeInt(oneAnswer);
     }
 
@@ -132,7 +132,7 @@ public class Task implements Parcelable {
 
             List<String> answerList = null;
             in.readList(answerList, List.class.getClassLoader());
-            task.setTaskAnswers(answerList);
+//            task.setAnswers(answerList);
             task.setOneAnswer(1);
             return task;
         }

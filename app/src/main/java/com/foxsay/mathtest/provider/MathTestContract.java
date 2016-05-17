@@ -12,13 +12,13 @@ public class MathTestContract {
 
     public interface Tables {
         String TASKS = "tasks";
-        String TASK_ANSWERS = "task_answers";
-        String POSSIBLE_TASK_ANSWERS = "possible_task_answers";
+        String ANSWERS = "answers";
         String TESTS = "tests";
         String TEST_TASK_ANSWERS = "test_task_answers";
     }
 
     public interface TaskColumns {
+        String TASK_ID = "taskId"; // unique id in server
         String SECTION = "section";
         String SUB_SECTION = "sub_section";
         String GROUP = "group";
@@ -28,15 +28,13 @@ public class MathTestContract {
         String ONE_ANSWER = "one_answer";
     }
 
-    public interface TaskAnswerColumns {
+    public interface AnswerColumns {
         String TASK_ID = "task_id";
         String ANSWER = "answer";
-    }
-    public interface PossibleTaskAnswersColumns {
-        String TASK_ID = "task_id";
-        String ANSWER = "answer";
+        String CORRECT = "correct";
     }
     public interface TestColumns {
+        String TEST_ID = "testId"; // unique id in server
         String DATE = "date";
         String TIME = "time";
         String GRADE = "grade";
@@ -68,13 +66,13 @@ public class MathTestContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_TASKS).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched2014.block";
+                "vnd.android.cursor.dir/vnd.com.foxsay.mathtest.task";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched2014.block";
+                "vnd.android.cursor.item/vnd.com.foxsay.mathtest.task";
 
         /** "ORDER BY" clauses. */
-        public static final String DEFAULT_SORT = BlocksColumns.BLOCK_START + " ASC, "
-                + BlocksColumns.BLOCK_END + " ASC";
+//        public static final String DEFAULT_SORT = BlocksColumns.BLOCK_START + " ASC, "
+//                + BlocksColumns.BLOCK_END + " ASC";
 
         /** Build {@link Uri} for requested {@link #_ID}. */
         public static Uri buildUri(String taskId) {
@@ -86,16 +84,20 @@ public class MathTestContract {
             return uri.getPathSegments().get(1);
         }
 
-        /**
-         * Generate a {@link #BLOCK_ID} that will always match the requested
-         * {@link Blocks} details.
-         * @param startTime the block start time, in milliseconds since Epoch UTC
-         * @param endTime the block end time, in milliseconds since Epoch UTF
-         */
-        public static String generateBlockId(long startTime, long endTime) {
-            startTime /= DateUtils.SECOND_IN_MILLIS;
-            endTime /= DateUtils.SECOND_IN_MILLIS;
-            return ParserUtils.sanitizeId(startTime + "-" + endTime);
-        }
+//        /**
+//         * Generate a {@link #BLOCK_ID} that will always match the requested
+//         * {@link Blocks} details.
+//         * @param startTime the block start time, in milliseconds since Epoch UTC
+//         * @param endTime the block end time, in milliseconds since Epoch UTF
+//         */
+//        public static String generateBlockId(long startTime, long endTime) {
+//            startTime /= DateUtils.SECOND_IN_MILLIS;
+//            endTime /= DateUtils.SECOND_IN_MILLIS;
+//            return ParserUtils.sanitizeId(startTime + "-" + endTime);
+//        }
+    }
+
+    public static class Answers implements AnswerColumns {
+
     }
 }
