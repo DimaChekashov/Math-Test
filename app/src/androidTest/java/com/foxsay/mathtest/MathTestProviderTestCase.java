@@ -5,21 +5,17 @@ import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.OperationApplicationException;
-import android.net.Uri;
 import android.os.RemoteException;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.test.ProviderTestCase2;
 
 import com.foxsay.mathtest.model.Answer;
 import com.foxsay.mathtest.model.Section;
 import com.foxsay.mathtest.model.Task;
 import com.foxsay.mathtest.provider.MathTestContract;
-import com.foxsay.mathtest.provider.MathTestContract.*;
+import com.foxsay.mathtest.provider.MathTestContract.Answers;
+import com.foxsay.mathtest.provider.MathTestContract.Tasks;
 import com.foxsay.mathtest.provider.MathTestProvider;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +24,6 @@ import java.util.List;
  * @author roman
  * @since 07.05.2016
  */
-@RunWith(AndroidJUnit4.class)
 public class MathTestProviderTestCase extends ProviderTestCase2<MathTestProvider> {
 
     private ContentResolver contentResolver;
@@ -44,14 +39,12 @@ public class MathTestProviderTestCase extends ProviderTestCase2<MathTestProvider
         contentResolver = getMockContentResolver();
     }
 
-    @Test
-    public void shouldCreateAndRetrieveTask(){
+    public void testShouldCreateAndRetrieveTask(){
         createTask();
         fail();
     }
 
-    @Test
-    public void shouldCreateAndRetrieveTest(){
+    public void testShouldCreateAndRetrieveTest(){
         fail();
     }
 
